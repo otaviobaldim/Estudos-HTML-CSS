@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+@font-face {
+    font-family:'Android';
+    src: url('../fontes/idroid.otf') format('opentype');
+    font-weight: normal;
+}
+
+:root{
+    --cor0: #73ff9d;
+    --cor2: #007a21;
+    --cor2: #50ff56;
+    --cor3: #A8D2BB;
+    --cor4: #ffffff;
+    --cor5: rgb(0, 0, 0);
+    --cor6: rgb(15, 89, 11);
+    --cor7: rgb(16, 131, 1);
+    --cor8: gb(146, 255, 173);
+
+    --font-padrao: Arial,Verdana, Helvetica, sans-serif;
+    --font-destaque: "Bebas Neue", sans-serif;
+    --font-android: 'Android';
+}
+
+    body{
+        background-color:#73ff9d;
+        margin-top:-21px ;
+        font-family:var(--fonte-padrao) ;
+        
+    }
+
+    
+    
+    header{
+           background-image: linear-gradient(360deg,#007a21,#50ff56);
+           margin-left: -10px;
+           margin-right: -10px; 
+           min-height: 150px;
+            
+    }
+    
+    header > p {
+                font-family: var(--fonte-padrao);
+                font-size: 1.2em;
+                max-width: 10px;
+                text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.836);
+                margin-bottom: 100px;
+
+    }
+
+    header > a:hover {
+            background-color:#64f569; 
+            border-radius: 5px;
+            font-weight: bold;  
+            text-decoration: none;   
+            transition-duration: .5s;
+            
+    }
+    
+    header > a{
+        margin-bottom: 10px;
+    }
+
+    h1{
+        font-family: var(--font-destaque);
+        font-size: 3em;
+        text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.637);
+        font-weight: normal;
+     }
+    
+    h2{
+        margin-left: 15px;
+        margin-right: 15px;
+        font-family: var(--font-android);
+        font-weight: normal;
+        font-size: 1.3;
+    }
+
+    h3{
+
+        background-image: linear-gradient(90deg,#A8D2BB,#FFFFFF); 
+        margin-left: 15px;
+        margin-right: 15px;
+        font-family: var(--font-android);
+        font-weight: normal;
+    }
+
+    
+     article{
+            background-color: #ffffff;
+            border-radius: 8px; 
+            min-width: 320px;
+            max-width: 800px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.623);
+            border-top-left-radius: 0%;
+            border-top-right-radius: 0%;
+            margin: auto;
+            margin-bottom: 10px;
+            margin-top: -20px;
+           
+            
+    }
+
+    article > p {
+        margin-left:5%;
+        margin-right: 5%;
+        text-align: justify;
+        line-height: 1.3em;
+    }
+
+    a{
+    margin: 8px;
+    text-decoration: none;
+    margin-bottom: 105px;
+
+    }
+
+    nav {
+        text-align: center
+    }
+
+    h4{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        color: white;
+        font-family:var(--fonte-padrao) ;
+    }
+    
+    main{
+         background-color:rgb(31, 202, 73);
+         margin-right:15px ;
+         margin-left: 15px;
+         margin-top: 10px;
+         padding:1%;
+         border-top-right-radius: 10px;
+         border-top-left-radius: 10px;
+      
+    }
+
+    aside{
+        background-color: rgb(146, 255, 173);
+        margin-left: 15px;
+        margin-right: 15px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        margin-top: -16px;
+    }
+
+    aside > p {
+        margin-left:5%;
+        margin-right: 5%;
+    }
+
+    img{
+    width: 100%;
+    }
+
+    ul {
+    list-style-type:'\2714\00A0\00A0';
+    columns: 2;
+    list-style-position: inside;
+    }
+
+    div.video {
+
+    background-color: rgb(25, 87, 16);
+    padding: 10px;
+    padding: 20px;
+    padding-bottom: 52%;
+    position: relative;
+    }
+
+    div.video > iframe {
+    position: absolute;
+    top: auto;
+    width: 94%;
+    height: 88%;
+    }
+
+    footer {
+        background-color:rgb(15, 89, 11);
+    color: rgb(0, 0, 0);   
+    text-align: center;
+    padding: 1px;
+    margin-left: -10px;
+    margin-right: -10px; 
+    margin-bottom: -10px;
+    font-size: small;
+    }
