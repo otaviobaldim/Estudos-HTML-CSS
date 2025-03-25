@@ -32,32 +32,41 @@
     
  }
 
+ #primeiro {
+    font-family: var(--font-padrao);
+    margin-right: 50%;
+    font-size: 20px;
+    line-height: 30px;
+    margin-left: 4%; 
+}
 
  body {
         background-color: var(--cor1);
  }
 
 
- div div div { 
-    background-color: #000000;
-}
 
+header{ 
+     background-color: #000000;
+     margin-top: -21px;
+     margin-left:-8px ;
+     margin-right:-8px ;
+     height: 130px;
+}
 
  div div {
     color:hsl(0, 0%, 100%);
 }
 
-
  h1 { 
     color: var(--cor2);
     font-family: var(--font-Título);
+    text-align: center;
+    margin-top: ;
 }
 
 
-
- p {
-    font-family: var(--font-padrao);
-    margin-right: 50%;
-    font-size: 20px;
-    line-height: 30px;
+#oi {
+    text-align: center;
+    font-family: cursive;
  }
