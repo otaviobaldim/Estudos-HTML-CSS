@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+@import url(https://fontsfree.net/comic-sans-ms-w05-bold-italic-font-download.html);
+
+@font-face {
+    font-family: Paragrafo;
+    src: url(fontes/FontsFree-Net-comicsans4.ttf) format('opentype');
+    font-weight: normal;
+}
+
+@import url(https://fonts.google.com/specimen/Luckiest+Guy?query=Luckiest+Guy);
+
+@font-face {
+    font-family: Título;
+    src: url(fontes/LuckiestGuy-Regular.ttf) format('opentype');
+    font-weight: normal;
+}
+
+:root{
+    --cor0: #000 ;
+    --cor2: #fff   ;
+    --cor2: #   ;
+    --cor3: #   ;
+    --cor4: #   ;
+    --cor5: #   ;
+    --cor6: #   ;
+    --cor7: #   ;
+    --cor8: #   ;
+
+    --font-padrao: Paragrafo;
+    --font-Título: Título;
+    
+ }
+
+
+ body {
+        background-color: var(--cor1);
+ }
+
+
+ div div div { 
+    background-color: #000000;
+}
+
+
+ div div {
+    color:hsl(0, 0%, 100%);
+}
+
+
+ h1 { 
+    color: var(--cor2);
+    font-family: var(--font-Título);
+}
+
+
+
+ p {
+    font-family: var(--font-padrao);
+    margin-right: 50%;
+    font-size: 20px;
+    line-height: 30px;
+ }
