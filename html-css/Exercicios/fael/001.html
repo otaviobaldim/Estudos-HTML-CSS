@@ -3,27 +3,766 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thundercat</title>
+    <title>YouTubeClone</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 650px;
+            margin: 0 20px;
+            display: flex;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 2px 0 0 2px;
+        }
+
+        .search-container button {
+            padding: 10px 15px;
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-radius: 0 2px 2px 0;
+            cursor: pointer;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-icons button {
+            margin-left: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .container {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background-color: white;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 60px;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f2f2f2;
+        }
+
+        .sidebar-item i {
+            margin-right: 20px;
+        }
+
+        /* Main Video Area */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .video-container {
+            margin-bottom: 20px;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 500px;
+            background-color: black;
+            margin-bottom: 20px;
+        }
+
+        .video-info {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .video-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .video-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .video-actions {
+            display: flex;
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-button i {
+            margin-right: 5px;
+        }
+
+        .channel-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .channel-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-right: 15px;
+        }
+
+        .channel-details {
+            flex: 1;
+        }
+
+        .channel-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .subscribers {
+            color: #606060;
+            font-size: 14px;
+        }
+
+        .subscribe-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .description {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 3px;
+            margin-bottom: 20px;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            margin-top: 20px;
+        }
+
+        .comments-header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .comment-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-right: 15px;
+        }
+
+        .comment-input {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+            outline: none;
+        }
+
+        .comment {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .comment-text {
+            margin-bottom: 5px;
+        }
+
+        .comment-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .comment-action {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .comment-action i {
+            margin-right: 5px;
+        }
+
+        /* Recommended Videos */
+        .recommended-videos {
+            margin-top: 20px;
+        }
+
+        .recommended-header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            cursor: pointer;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 140px;
+            background-color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .video-card-info {
+            display: flex;
+        }
+
+        .video-card-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-right: 10px;
+        }
+
+        .video-card-details {
+            flex: 1;
+        }
+
+        .video-card-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-card-channel {
+            color: #606060;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .video-card-stats {
+            color: #606060;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .video-player {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+            }
+            
+            .sidebar-item span {
+                display: none;
+            }
+            
+            .sidebar-item i {
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .video-player {
+                height: 300px;
+            }
+            
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                display: flex;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .search-container {
+                display: none;
+            }
+            
+            .video-player {
+                height: 200px;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i>≡</i>
+            <img src="/api/placeholder/100/30" alt="YouTubeClone Logo">
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Pesquisar">
+            <button><i>🔍</i></button>
+        </div>
+        <div class="header-icons">
+            <button><i>📹</i></button>
+            <button><i>🔔</i></button>
+            <button><i>👤</i></button>
+        </div>
+    </header>
 
-    <h1>Titulo principal</h1>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-item">
+                <i>🏠</i>
+                <span>Início</span>
+            </div>
+            <div class="sidebar-item">
+                <i>🔥</i>
+                <span>Shorts</span>
+            </div>
+            <div class="sidebar-item">
+                <i>📺</i>
+                <span>Inscrições</span>
+            </div>
+            <div class="sidebar-item">
+                <i>📚</i>
+                <span>Biblioteca</span>
+            </div>
+            <div class="sidebar-item">
+                <i>🕒</i>
+                <span>Histórico</span>
+            </div>
+            <div class="sidebar-item">
+                <i>🎬</i>
+                <span>Seus vídeos</span>
+            </div>
+            <div class="sidebar-item">
+                <i>⏱️</i>
+                <span>Assistir mais tarde</span>
+            </div>
+            <div class="sidebar-item">
+                <i>👍</i>
+                <span>Vídeos marcados</span>
+            </div>
+            <hr>
+            <div class="sidebar-item">
+                <i>🎮</i>
+                <span>Jogos</span>
+            </div>
+            <div class="sidebar-item">
+                <i>🎵</i>
+                <span>Música</span>
+            </div>
+            <div class="sidebar-item">
+                <i>🎞️</i>
+                <span>Filmes</span>
+            </div>
+            <div class="sidebar-item">
+                <i>📰</i>
+                <span>Notícias</span>
+            </div>
+            <div class="sidebar-item">
+                <i>🏆</i>
+                <span>Esportes</span>
+            </div>
+        </div>
 
-    <h2>Sub titulo</h2>
+        <!-- Main Video Area -->
+        <div class="main-content">
+            <div class="video-container">
+                <div class="video-player">
+                    <video controls width="100%" height="100%">
+                        <source src="#" type="video/mp4">
+                        Seu navegador não suporta vídeos HTML5.
+                    </video>
+                </div>
 
-    <h3>Sub sub titulo</h3>
+                <div class="video-info">
+                    <h1 class="video-title">Título do vídeo - Aprenda a criar um clone do YouTube com HTML, CSS e JavaScript</h1>
+                    
+                    <div class="video-stats">
+                        <div>1.234.567 visualizações • 10 de março de 2025</div>
+                        <div class="video-actions">
+                            <button class="action-button">
+                                <i>👍</i> 100K
+                            </button>
+                            <button class="action-button">
+                                <i>👎</i> 2K
+                            </button>
+                            <button class="action-button">
+                                <i>↗️</i> Compartilhar
+                            </button>
+                            <button class="action-button">
+                                <i>💾</i> Salvar
+                            </button>
+                            <button class="action-button">
+                                <i>•••</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-    <p>Este é um <strong>exemplo</strong> de <mark>paragrafo</mark></p>
+                <div class="channel-info">
+                    <div class="channel-avatar"></div>
+                    <div class="channel-details">
+                        <div class="channel-name">Nome do Canal</div>
+                        <div class="subscribers">1.2M de inscritos</div>
+                    </div>
+                    <button class="subscribe-button">Inscrever-se</button>
+                </div>
 
-    <a href="https://www.cursoemvideo.com/cursos/" target="_blank">Curso de html e css</a>
+                <div class="description">
+                    <p>Neste vídeo tutorial, você aprenderá a criar um clone do YouTube com HTML, CSS e JavaScript. Vamos cobrir todos os aspectos principais da interface do usuário, incluindo o player de vídeo, a barra de navegação, recomendações e seção de comentários.</p>
+                    <p>📲 Redes sociais: 
+                    <br>Instagram: @canalexemplo
+                    <br>Twitter: @canalexemplo</p>
+                    <p>🔗 Links úteis mencionados no vídeo:
+                    <br>- Repositório GitHub: https://github.com/exemple/youtube-clone
+                    <br>- Documentação MDN: https://developer.mozilla.org/</p>
+                </div>
 
-    <hr>
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <div class="comments-header">1.234 comentários</div>
+                    
+                    <div class="comment-form">
+                        <div class="user-avatar"></div>
+                        <input type="text" class="comment-input" placeholder="Adicione um comentário...">
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="user-avatar"></div>
+                        <div class="comment-content">
+                            <div class="comment-author">Nome do Usuário</div>
+                            <div class="comment-text">Este vídeo foi extremamente útil! Consegui criar meu próprio clone do YouTube seguindo as instruções. Muito obrigado pelo tutorial!</div>
+                            <div class="comment-actions">
+                                <div class="comment-action">
+                                    <i>👍</i> 245
+                                </div>
+                                <div class="comment-action">
+                                    <i>👎</i>
+                                </div>
+                                <div class="comment-action">
+                                    Responder
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="user-avatar"></div>
+                        <div class="comment-content">
+                            <div class="comment-author">Outro Usuário</div>
+                            <div class="comment-text">Adorei o tutorial! Você poderia fazer um vídeo sobre como implementar o sistema de recomendações?</div>
+                            <div class="comment-actions">
+                                <div class="comment-action">
+                                    <i>👍</i> 123
+                                </div>
+                                <div class="comment-action">
+                                    <i>👎</i>
+                                </div>
+                                <div class="comment-action">
+                                    Responder
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <img src="5186beb8-3545-48aa-bb03-a258a81314c4.jpg" height="300" width="500" alt="">
-    
+            <!-- Recommended Videos -->
+            <div class="recommended-videos">
+                <div class="recommended-header">Vídeos recomendados</div>
+                
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="thumbnail"></div>
+                        <div class="video-card-info">
+                            <div class="video-card-avatar"></div>
+                            <div class="video-card-details">
+                                <div class="video-card-title">Como criar um site responsivo com CSS Grid e Flexbox</div>
+                                <div class="video-card-channel">Nome do Canal</div>
+                                <div class="video-card-stats">500K visualizações • há 2 meses</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="thumbnail"></div>
+                        <div class="video-card-info">
+                            <div class="video-card-avatar"></div>
+                            <div class="video-card-details">
+                                <div class="video-card-title">Aprenda JavaScript em 1 hora - Tutorial para iniciantes</div>
+                                <div class="video-card-channel">Programador Expert</div>
+                                <div class="video-card-stats">1.5M visualizações • há 6 meses</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="thumbnail"></div>
+                        <div class="video-card-info">
+                            <div class="video-card-avatar"></div>
+                            <div class="video-card-details">
+                                <div class="video-card-title">React vs Vue vs Angular - Qual escolher em 2025?</div>
+                                <div class="video-card-channel">Tech Channel</div>
+                                <div class="video-card-stats">750K visualizações • há 2 semanas</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="thumbnail"></div>
+                        <div class="video-card-info">
+                            <div class="video-card-avatar"></div>
+                            <div class="video-card-details">
+                                <div class="video-card-title">10 dicas para melhorar seu CSS - Técnicas avançadas</div>
+                                <div class="video-card-channel">Design Master</div>
+                                <div class="video-card-stats">450K visualizações • há 1 mês</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="thumbnail"></div>
+                        <div class="video-card-info">
+                            <div class="video-card-avatar"></div>
+                            <div class="video-card-details">
+                                <div class="video-card-title">Como criar animações com CSS - Tutorial completo</div>
+                                <div class="video-card-channel">Web Animations</div>
+                                <div class="video-card-stats">320K visualizações • há 3 meses</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="thumbnail"></div>
+                        <div class="video-card-info">
+                            <div class="video-card-avatar"></div>
+                            <div class="video-card-details">
+                                <div class="video-card-title">Desenvolvimento Full Stack - Do zero ao profissional</div>
+                                <div class="video-card-channel">Coding Academy</div>
+                                <div class="video-card-stats">1.2M visualizações • há 4 meses</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        // JavaScript para adicionar funcionalidades básicas
 
+        // Simular clique no botão de inscrição
+        document.querySelector('.subscribe-button').addEventListener('click', function() {
+            if (this.textContent === 'Inscrever-se') {
+                this.textContent = 'Inscrito';
+                this.style.backgroundColor = '#606060';
+            } else {
+                this.textContent = 'Inscrever-se';
+                this.style.backgroundColor = 'red';
+            }
+        });
 
+        // Simular cliques nos botões de like/dislike
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon && (icon.textContent === '👍' || icon.textContent === '👎')) {
+                    // Alternar estilo para simular seleção
+                    this.classList.toggle('selected');
+                    if (this.classList.contains('selected')) {
+                        this.style.color = '#065fd4';
+                    } else {
+                        this.style.color = '';
+                    }
+                }
+            });
+        });
 
+        // Simular envio de comentário
+        document.querySelector('.comment-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                // Criar novo elemento de comentário
+                const newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.innerHTML = `
+                    <div class="user-avatar"></div>
+                    <div class="comment-content">
+                        <div class="comment-author">Você</div>
+                        <div class="comment-text">${this.value}</div>
+                        <div class="comment-actions">
+                            <div class="comment-action">
+                                <i>👍</i> 0
+                            </div>
+                            <div class="comment-action">
+                                <i>👎</i>
+                            </div>
+                            <div class="comment-action">
+                                Responder
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Inserir antes do primeiro comentário
+                const firstComment = document.querySelector('.comment');
+                document.querySelector('.comments-section').insertBefore(newComment, firstComment);
+                
+                // Limpar campo de entrada
+                this.value = '';
+                
+                // Atualizar contador de comentários
+                const commentsHeader = document.querySelector('.comments-header');
+                const currentCount = parseInt(commentsHeader.textContent);
+                commentsHeader.textContent = (currentCount + 1) + ' comentários';
+            }
+        });
+
+        // Simular clique nos vídeos recomendados
+        document.querySelectorAll('.video-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Em uma aplicação real, isto redirecionaria para outro vídeo
+                // Aqui, apenas mostramos um alerta
+                alert('Carregando novo vídeo...');
+            });
+        });
+
+        // Simular clique nos itens da barra lateral
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remover seleção atual
+                document.querySelectorAll('.sidebar-item').forEach(i => {
+                    i.style.backgroundColor = '';
+                    i.style.fontWeight = '';
+                });
+                
+                // Selecionar item clicado
+                this.style.backgroundColor = '#e5e5e5';
+                this.style.fontWeight = 'bold';
+                
+                // Em uma aplicação real, isto redirecionaria para outra página
+                // Aqui, apenas mostramos um alerta com o nome da seção
+                const sectionName = this.querySelector('span').textContent;
+                alert('Navegando para: ' + sectionName);
+            });
+        });
+
+        // Simular pesquisa
+        document.querySelector('.search-container button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-container input').value;
+            if (searchTerm.trim() !== '') {
+                alert('Pesquisando por: ' + searchTerm);
+            }
+        });
+
+        // Permitir pesquisa ao pressionar Enter
+        document.querySelector('.search-container input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                alert('Pesquisando por: ' + this.value);
+            }
+        });
+    </script>
 </body>
 </html>
